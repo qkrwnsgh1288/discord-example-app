@@ -9,6 +9,7 @@ import {
 } from 'discord-interactions';
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
+import { Client, Partials } from 'discord.js';
 
 // Create an express app
 const app = express();
@@ -19,6 +20,23 @@ app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 
 // Store for in-progress games. In production, you'd want to use a DB
 const activeGames = {};
+
+const client = new Client({
+  // intents: ['GUILD_PRESENCES', 'GUILD_MEMBERS', Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
+  intents: [
+    1
+    // GatewayIntentBits.GuildMembers,
+    // GatewayIntentBits.GuildMessages,
+    // GatewayIntentBits.MessageContent,
+  ],
+  partials: [Partials.Message, Partials.Channel, Partials.Reaction],
+});
+
+const TOKEN = process.env.DISCORD_TOKEN;
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
