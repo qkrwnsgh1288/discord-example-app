@@ -37,6 +37,7 @@ const TOKEN = process.env.DISCORD_TOKEN;
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
+client.login(TOKEN);
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
