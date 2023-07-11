@@ -50,10 +50,20 @@ client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   console.log('messageCreate author', message.author, 'content', message.content);
   const channel = message.channel;
+  console.log('channel', channel);
   if (message.content === 'aaa') {
-    message.author.send("Hi! What's your name?");
+    message.author.send("Hi! What's your name?")
+      .then((start) => {
+        console.log('in send response start ', start);
+      });
+
   }
-  // if (message.author.bot) return;
+  // message.channel
+  //   .awaitMessages({ true , max: 1, time: 50000, errors: ['time'] })
+  //   .then((name) => {
+  //     message.author.send(`Pleased to meet you, ${name}!`);
+  //   })
+  //   .catch((err) => message.author.send("There's been an error or you've timed out! Try again with `start dialogue`!"));
 });
 client.on('message', async (message) => {
   console.log('message');
