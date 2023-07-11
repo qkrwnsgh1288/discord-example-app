@@ -24,7 +24,7 @@ const activeGames = {};
 const client = new Client({
   // intents: ['GUILD_PRESENCES', 'GUILD_MEMBERS', Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
   intents: [
-    1
+    1, 2, 512, 32768
     // GatewayIntentBits.GuildMembers,
     // GatewayIntentBits.GuildMessages,
     // GatewayIntentBits.MessageContent,
