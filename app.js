@@ -47,8 +47,12 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 client.on('messageCreate', async (message) => {
+  if (message.author.bot) return;
   console.log('messageCreate author', message.author, 'content', message.content);
   const channel = message.channel;
+  if (message.content === 'aaa') {
+    message.author.send("Hi! What's your name?");
+  }
   // if (message.author.bot) return;
 });
 client.on('message', async (message) => {
