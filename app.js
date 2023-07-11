@@ -37,6 +37,23 @@ const TOKEN = process.env.DISCORD_TOKEN;
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
+
+client.on('interactionCreate', async (interaction) => {
+  console.log('interactionCreate');
+  if (!interaction.isChatInputCommand()) return;
+
+  if (interaction.commandName === 'ping') {
+    await interaction.reply('Pong!');
+  }
+});
+client.on('messageCreate', async (message) => {
+  console.log('messageCreate');
+  // if (message.author.bot) return;
+});
+client.on('message', async (message) => {
+  console.log('message');
+});
+
 client.login(TOKEN);
 
 /**
