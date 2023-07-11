@@ -47,7 +47,8 @@ client.on('interactionCreate', async (interaction) => {
   }
 });
 client.on('messageCreate', async (message) => {
-  console.log('messageCreate');
+  console.log('messageCreate author', message.author, 'content', message.content);
+  const channel = message.channel;
   // if (message.author.bot) return;
 });
 client.on('message', async (message) => {
