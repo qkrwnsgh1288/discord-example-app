@@ -9,7 +9,7 @@ import {
 } from 'discord-interactions';
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
-import { Client, Partials, GatewayIntentBits } from 'discord.js';
+import {Client, Partials, GatewayIntentBits, REST} from 'discord.js';
 
 // Create an express app
 const app = express();
@@ -33,12 +33,19 @@ const client = new Client({
   partials: [Partials.Message, Partials.Channel, Partials.Reaction],
 });
 
-const TOKEN = process.env.DISCORD_TOKEN;
+const BOT_TOKEN = process.env.DISCORD_TOKEN;
+const MY_TOKEN = process.env.MY_TOKEN;
+
+const test_server = '1127861120275841044';
+
 const test1_channel = '1127861311867469856';
 const sui_community_channel = '1128216639893147668';
 
+const rest = new REST({ version: '10' }).setToken(BOT_TOKEN);
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  console.log(client.user);
 });
 
 client.on('interactionCreate', async (interaction) => {
@@ -64,7 +71,8 @@ client.on('messageCreate', async (message) => {
   const channel3 = await client.channels.cache.find(channel => {
     console.log('channel id', channel.id, channel.name);
   });
-  console.log('channel1.name', channel1.name, 'channel1.sendable', channel1.sendable);
+  console.log('channel1.name', channel1.name);
+
 
   // message.channel
   //   .awaitMessages({ true , max: 1, time: 50000, errors: ['time'] })
@@ -77,7 +85,7 @@ client.on('message', async (message) => {
   console.log('@@@ message @@@');
 });
 
-client.login(TOKEN);
+client.login(MY_TOKEN);
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
