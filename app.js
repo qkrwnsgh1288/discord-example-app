@@ -64,7 +64,7 @@ client.on('messageCreate', async (message) => {
   const channel3 = await client.channels.cache.find(channel => {
     console.log('channel id', channel.id, channel.name);
   });
-  console.log('channel1.name', channel1.name, 'channel2.name', channel2.name);
+  console.log('channel1.name', channel1.name, 'channel1.sendable', channel1.sendable);
 
   // message.channel
   //   .awaitMessages({ true , max: 1, time: 50000, errors: ['time'] })
