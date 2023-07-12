@@ -50,7 +50,6 @@ client.on('messageCreate', async (message) => {
   if (message.author.bot) return;
   console.log('messageCreate author', message.author, 'content', message.content);
   const channel = message.channel;
-  console.log('channel', channel);
   if (message.content === 'aaa') {
     message.author.send("Hi! What's your name?")
       .then((start) => {
