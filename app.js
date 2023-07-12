@@ -35,6 +35,8 @@ const client = new Client({
 
 const BOT_TOKEN = process.env.DISCORD_TOKEN;
 const MY_TOKEN = process.env.MY_TOKEN;
+console.log('BOT_TOKEN', BOT_TOKEN);
+console.log('MY_TOKEN', MY_TOKEN);
 
 const test_server = '1127861120275841044';
 
