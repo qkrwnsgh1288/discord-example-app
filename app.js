@@ -9,7 +9,7 @@ import {
 } from 'discord-interactions';
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
-import { Client, Partials } from 'discord.js';
+import { Client, Partials, GatewayIntentBits } from 'discord.js';
 
 // Create an express app
 const app = express();
@@ -24,7 +24,8 @@ const activeGames = {};
 const client = new Client({
   // intents: ['GUILD_PRESENCES', 'GUILD_MEMBERS', Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
   intents: [
-    1, 2, 512, 32768
+    1, 2, 512, 32768,
+    // GatewayIntentBits.Guilds,
     // GatewayIntentBits.GuildMembers,
     // GatewayIntentBits.GuildMessages,
     // GatewayIntentBits.MessageContent,
@@ -59,8 +60,11 @@ client.on('messageCreate', async (message) => {
       });
   }
   const channel1 = await client.channels.fetch(test1_channel);
-  // channel1.send({content: "Example Message"})
-  console.log('name', channel1.name);
+  const channel2 = await client.channels.cache.get(test1_channel);
+  const channel3 = await client.channels.cache.find(channel => {
+    console.log('channel id', channel.id);
+  });
+  console.log('channel1.name', channel1.name, 'channel2.name', channel2.name);
 
   // message.channel
   //   .awaitMessages({ true , max: 1, time: 50000, errors: ['time'] })
@@ -70,7 +74,7 @@ client.on('messageCreate', async (message) => {
   //   .catch((err) => message.author.send("There's been an error or you've timed out! Try again with `start dialogue`!"));
 });
 client.on('message', async (message) => {
-  console.log('message');
+  console.log('@@@ message @@@');
 });
 
 client.login(TOKEN);
