@@ -34,8 +34,8 @@ const client = new Client({
 });
 
 const TOKEN = process.env.DISCORD_TOKEN;
-const test1_channel = 1127861311867469856;
-const sui_community_channel = 1128216639893147668;
+const test1_channel = '1127861311867469856';
+const sui_community_channel = '1128216639893147668';
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
