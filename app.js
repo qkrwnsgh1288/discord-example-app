@@ -33,6 +33,8 @@ const client = new Client({
 });
 
 const TOKEN = process.env.DISCORD_TOKEN;
+const test1_channel = 1127861311867469856;
+const sui_community_channel = 1128216639893147668;
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -55,8 +57,11 @@ client.on('messageCreate', async (message) => {
       .then((start) => {
         console.log('in send response start ', start);
       });
-
   }
+  const channel1 = await client.channels.fetch(test1_channel);
+  // channel1.send({content: "Example Message"})
+  console.log('name', channel1.name);
+
   // message.channel
   //   .awaitMessages({ true , max: 1, time: 50000, errors: ['time'] })
   //   .then((name) => {
